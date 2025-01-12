@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: Express Gateway API
+  description: An API gateway that provides access to user-related services.
+  version: 1.0.0
+  contact:
+    name: Support
+    email: support@example.com
+    url: https://example.com/support
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /:
+    get:
+      summary: Health check endpoint
+      description: This endpoint checks the health of the gateway service.
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Gateway is up and running.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "gateway says ok!"
+
+  /users:
+    get:
+      summary: Get a list of users
+      description: Retrieves a list of users from the system (requires additional implementation).
+      operationId: getUsers
+      responses:
+        '200':
+          description: A list of users is returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+        '500':
+          description: Internal server error.
+        '400':
+          description: Bad request.
+
+    post:
+      summary: Create a new user
+      description: Creates a new user in the system (requires additional implementation).
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+        '400':
+          description: Invalid input.
+        '500':
+          description: Internal server error.
+
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  responses:
+    BadRequest:
+      description: Bad request, invalid data.
+    Unauthorized:
+      description: Missing or invalid API key.
+    Forbidden:
+      description: The request is understood but refused due to authorization issues.
+
+  security:
+    - apiKeyAuth: []

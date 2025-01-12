@@ -1,0 +1,33 @@
+{
+  "name": "nodejs_api_gateway_auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node --watch-path ./ index",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [],
+  "author": "Aniket Lodh",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-slow-down": "^2.0.3",
+    "http-proxy-middleware": "^3.0.3",
+    "morgan": "^1.10.0",
+    "node-cache": "^5.1.2",
+    "response-time": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/response-time": "^2.3.8"
+  }
+}
